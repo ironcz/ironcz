@@ -1,4 +1,3 @@
-## ironic 的命令及注意事项
 #### 添加 ironic compute node
 ```
 ironic node-create -d fuel_ipmitool
