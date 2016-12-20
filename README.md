@@ -46,13 +46,9 @@ export DIB_EPEL_MIRROR=http://dl.fedoraproject.org/pub/epel (option)
     开始制作
 disk-image-create -a amd64 -p parted,vim bootloader dhcp-all-interfaces enable-serial-console cloud-init-datasources devuser (epel) selinux-permissive baremetal centos7 -o mustang_centos7
 
-
 ```
 **上传和更新image**
-
 ```
-
-
 glance image-create --name $NAME.initrd --visibility public --disk-format ari --container-format bare < $NAME.initrd
 
 glance image-create --name $NAME.vmlinuz --visibility public --disk-format aki --container-format bare < $NAME.vmlinuz
@@ -68,9 +64,7 @@ ssh_pwauth：  1
 ```
 sed -i 's/PasswordAuthentication no/PasswordAuthentication yes/g' /etc/ssh/sshd_config
 ```
-然后清理instance,关机,做snapshot.将做好的snapshot下载下来
-openstack image save $IMAGE_UUID --file $FILE_NAME
-然后转换成raw格式
+然后清理instance,关机,做snapshot.将做好的snapshot下载下来openstack image save $IMAGE_UUID --file $FILE_NAME然后转换成raw格式
 ```
 qemu-img convert -f qcow2 -O raw INPUTE_FILENAME $OUTPUT_FILENAME
 ```
@@ -82,7 +76,6 @@ glance image-create --name $NAME --visibility public --disk-format raw --contain
 ```
 glance image-update $IMAGE_UUID --property cpu_arch=x86_64 --property hypervisor_type="baremetal" --property fuel_disk_info='[{"name": "sda", "extra": [], "free_space": 51200, "type": "disk", "id": "vda", "size": 51200, "volumes": [{"mount": "/", "type": "partition", "file_system": "ext4", "size": 40000}]}]'
 ```
-
 #### Web Console
 安装相关软件包
 ```
